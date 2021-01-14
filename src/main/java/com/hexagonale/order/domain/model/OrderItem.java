@@ -5,16 +5,16 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class OrderItem {
-    private UUID productId;
+    private UUID bookId;
     private BigDecimal price;
 
-    public OrderItem(final Product product) {
-        this.productId = product.getId();
-        this.price = product.getPrice();
+    public OrderItem(final Book book) {
+        this.bookId = book.getId();
+        this.price = book.getPrice();
     }
 
-    public UUID getProductId() {
-        return productId;
+    public UUID getBookId() {
+        return bookId;
     }
 
     public BigDecimal getPrice() {
@@ -29,11 +29,11 @@ public class OrderItem {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         OrderItem orderItem = (OrderItem) o;
-        return Objects.equals(productId, orderItem.productId) && Objects.equals(price, orderItem.price);
+        return Objects.equals(bookId, orderItem.bookId) && Objects.equals(price, orderItem.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(productId, price);
+        return Objects.hash(bookId, price);
     }
 }

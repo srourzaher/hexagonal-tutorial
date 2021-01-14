@@ -1,7 +1,7 @@
 package com.hexagonale.order.domain.service;
 
 import com.hexagonale.order.domain.model.Order;
-import com.hexagonale.order.domain.model.Product;
+import com.hexagonale.order.domain.model.Book;
 import com.hexagonale.order.domain.repository.OrderRepository;
 
 import java.util.UUID;
@@ -15,17 +15,17 @@ public class DomainOrderService implements OrderService {
     }
 
     @Override
-    public UUID createOrder(final Product product) {
-        final Order order = new Order(UUID.randomUUID(), product);
+    public UUID createOrder(final Book book) {
+        final Order order = new Order(UUID.randomUUID(), book);
         orderRepository.save(order);
 
         return order.getId();
     }
 
     @Override
-    public void addProduct(final UUID id, final Product product) {
+    public void addBook(final UUID id, final Book book) {
         final Order order = getOrder(id);
-        order.addOrder(product);
+        order.addOrder(book);
 
         orderRepository.save(order);
     }
@@ -39,7 +39,7 @@ public class DomainOrderService implements OrderService {
     }
 
     @Override
-    public void deleteProduct(final UUID id, final UUID productId) {
+    public void deleteBook(final UUID id, final UUID productId) {
         final Order order = getOrder(id);
         order.removeOrder(productId);
 

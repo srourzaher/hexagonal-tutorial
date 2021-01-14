@@ -1,15 +1,15 @@
 package com.hexagonale.order.domain.service;
 
-import com.hexagonale.order.domain.model.Product;
+import com.hexagonale.order.domain.model.Book;
 
 import java.util.UUID;
 
 public interface OrderService {
-    UUID createOrder(Product product);
+    UUID createOrder(Book book);
 
-    void addProduct(UUID id, Product product);
+    void addBook(UUID id, Book book);
 
     void completeOrder(UUID id);
 
-    void deleteProduct(UUID id, UUID productId);
+    void deleteBook(UUID id, UUID bookId);
 }

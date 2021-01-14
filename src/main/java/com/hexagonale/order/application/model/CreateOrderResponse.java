@@ -1,4 +1,4 @@
-package com.hexagonale.order.application.response;
+package com.hexagonale.order.application.model;
 
 import java.util.UUID;
 

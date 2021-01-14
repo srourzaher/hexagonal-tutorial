@@ -12,11 +12,11 @@ public class Order {
     private List<OrderItem> orderItems;
     private BigDecimal price;
 
-    public Order(final UUID id, final Product product) {
+    public Order(final UUID id, final Book book) {
         this.id = id;
-        this.orderItems = new ArrayList<>(Collections.singletonList(new OrderItem(product)));
+        this.orderItems = new ArrayList<>(Collections.singletonList(new OrderItem(book)));
         this.status = OrderStatus.CREATED;
-        this.price = product.getPrice();
+        this.price = book.getPrice();
     }
 
     public void complete() {
@@ -24,11 +24,11 @@ public class Order {
         this.status = OrderStatus.COMPLETED;
     }
 
-    public void addOrder(final Product product) {
+    public void addOrder(final Book book) {
         validateState();
-        validateProduct(product);
-        orderItems.add(new OrderItem(product));
-        price = price.add(product.getPrice());
+        validateProduct(book);
+        orderItems.add(new OrderItem(book));
+        price = price.add(book.getPrice());
     }
 
     public void removeOrder(final UUID id) {
@@ -43,7 +43,7 @@ public class Order {
         return orderItems
           .stream()
           .filter(orderItem -> orderItem
-            .getProductId()
+            .getBookId()
             .equals(id))
           .findFirst()
           .orElseThrow(() -> new DomainException("Product with " + id + " doesn't exist."));
@@ -55,8 +55,8 @@ public class Order {
         }
     }
 
-    private void validateProduct(final Product product) {
-        if (product == null) {
+    private void validateProduct(final Book book) {
+        if (book == null) {
             throw new DomainException("The product cannot be null.");
         }
     }
