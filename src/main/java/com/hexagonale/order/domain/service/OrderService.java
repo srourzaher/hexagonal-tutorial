@@ -7,9 +7,9 @@ import java.util.UUID;
 public interface OrderService {
     UUID createOrder(Book book);
 
-    void addBook(UUID id, Book book);
+    void addBook(UUID orderId, Book book);
 
     void completeOrder(UUID id);
 
-    void deleteBook(UUID id, UUID bookId);
+    void deleteBook(UUID orderId, UUID bookId);
 }

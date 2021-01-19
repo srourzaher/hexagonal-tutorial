@@ -23,8 +23,8 @@ public class DomainOrderService implements OrderService {
     }
 
     @Override
-    public void addBook(final UUID id, final Book book) {
-        final Order order = getOrder(id);
+    public void addBook(final UUID orderId, final Book book) {
+        final Order order = getOrder(orderId);
         order.addOrder(book);
 
         orderRepository.save(order);
@@ -39,9 +39,9 @@ public class DomainOrderService implements OrderService {
     }
 
     @Override
-    public void deleteBook(final UUID id, final UUID productId) {
-        final Order order = getOrder(id);
-        order.removeOrder(productId);
+    public void deleteBook(final UUID orderId, final UUID bookId) {
+        final Order order = getOrder(orderId);
+        order.removeOrder(bookId);
 
         orderRepository.save(order);
     }
